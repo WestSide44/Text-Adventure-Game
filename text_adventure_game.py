@@ -79,3 +79,58 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+class Inventory:
+    def __init__(self):
+        self.items = {}
+
+    def add_item(self, item_name, quantity=1):
+        if item_name in self.items:
+            self.items[item_name] += quantity
+        else:
+            self.items[item_name] = quantity
+
+    def remove_item(self, item_name, quantity=1):
+        if item_name in self.items:
+            self.items[item_name] -= quantity
+            if self.items[item_name] <= 0:
+                del self.items[item_name]
+
+    def show_inventory(self):
+        print("Inventory:")
+        for item, quantity in self.items.items():
+            print(f"{item}: {quantity}")
+
+# Example usage:
+inventory = Inventory()
+inventory.add_item("Key")
+inventory.add_item("Potion", 3)
+inventory.add_item("Map")
+inventory.show_inventory()
+
+inventory.remove_item("Potion", 2)
+inventory.show_inventory()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
