@@ -175,23 +175,7 @@ def combat(player, enemy):
     elif enemy.health <= 0:
         print(f"You defeated the {enemy.name}!")
 
-def main():
-    intro()
-    
-    player = Player()
-    
-    # Example enemy
-    enemy = Enemy("Goblin", 50, 8)
-    
-    choose_path(player)
-    
-    # Combat example
-    combat(player, enemy)
-    
-    player.display_stats()
 
-if __name__ == "__main__":
-    main()
 
 
 
