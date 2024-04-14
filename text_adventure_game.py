@@ -111,6 +111,89 @@ inventory.show_inventory()
 inventory.remove_item("Potion", 2)
 inventory.show_inventory()
 
+import time
+import random
+
+class Player:
+    def __init__(self, level=1, health=100, attack=10):
+        self.level = level
+        self.health = health
+        self.attack = attack
+        self.inventory = Inventory()
+
+    def display_stats(self):
+        print(f"Level: {self.level}")
+        print(f"Health: {self.health}")
+        print(f"Attack: {self.attack}")
+        self.inventory.show_inventory()
+
+class Enemy:
+    def __init__(self, name, health, attack):
+        self.name = name
+        self.health = health
+        self.attack = attack
+
+    def display_enemy(self):
+        print(f"Enemy: {self.name}")
+        print(f"Health: {self.health}")
+        print(f"Attack: {self.attack}")
+
+def intro():
+    # Your intro code here...
+
+def choose_path(player):
+    # Your path selection code here...
+
+def combat(player, enemy):
+    print(f"A wild {enemy.name} appears!")
+    time.sleep(1)
+    
+    while player.health > 0 and enemy.health > 0:
+        print("\nWhat will you do?")
+        print("1. Fight")
+        print("2. Run")
+        choice = input("Enter 1 or 2: ")
+
+        if choice == "1":
+            player_attack = random.randint(1, player.attack)
+            enemy_attack = random.randint(1, enemy.attack)
+
+            print(f"You attack the {enemy.name} for {player_attack} damage.")
+            enemy.health -= player_attack
+
+            if enemy.health > 0:
+                print(f"The {enemy.name} attacks you for {enemy_attack} damage.")
+                player.health -= enemy_attack
+        elif choice == "2":
+            print("You run away!")
+            break
+        else:
+            print("Invalid choice. Please enter 1 or 2.")
+
+    if player.health <= 0:
+        print("You were defeated.")
+    elif enemy.health <= 0:
+        print(f"You defeated the {enemy.name}!")
+
+def main():
+    intro()
+    
+    player = Player()
+    
+    # Example enemy
+    enemy = Enemy("Goblin", 50, 8)
+    
+    choose_path(player)
+    
+    # Combat example
+    combat(player, enemy)
+    
+    player.display_stats()
+
+if __name__ == "__main__":
+    main()
+
+
 
 
 
